@@ -1,4 +1,5 @@
 from elasticsearch import Elasticsearch
+from elasticsearch.exceptions import RequestError
 
 
 class ElasticSearchClient:
@@ -36,6 +37,20 @@ class ElasticSearchClient:
                 "properties": {
                     geo_point_field_name: {
                         "type": "geo_point"
+                    }
+                }
+            }
+
+        }
+        return geo_mapping
+
+    @staticmethod
+    def define_custom_geo_shape_mapping(geo_point_field_name):
+        geo_mapping = {
+            "mappings": {
+                "properties": {
+                    geo_point_field_name: {
+                        "type": "geo_shape"
                     }
                 }
             }
