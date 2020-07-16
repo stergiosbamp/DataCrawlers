@@ -3,12 +3,13 @@ from elasticsearch.exceptions import RequestError
 
 
 class ElasticSearchClient:
-    def __init__(self, host: str, port: str, use_ssl, verify_certs, http_auth, ca_certs):
+    def __init__(self, host: str, port: str, use_ssl, verify_certs, http_auth, ca_certs, timeout=None):
         self.es = Elasticsearch(['{}:{}'.format(host, port)],
                                 use_ssl=use_ssl,
                                 verify_certs=verify_certs,
                                 http_auth=http_auth,
-                                ca_certs=ca_certs)
+                                ca_certs=ca_certs,
+                                timeout=timeout)
 
         self.index = None
 

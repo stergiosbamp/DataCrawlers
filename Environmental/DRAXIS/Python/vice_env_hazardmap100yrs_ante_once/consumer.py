@@ -40,7 +40,8 @@ es = ElasticSearchClient(os.getenv('ES_HOST'), os.getenv('ES_PORT'),
                          use_ssl=os.getenv('ES_USE_SSL', False),
                          verify_certs=os.getenv('ES_VERIFY_CERTS', False),
                          http_auth=(os.getenv('ES_USER'), os.getenv('ES_PASSWORD')) if os.getenv('ES_USER') else None,
-                         ca_certs=os.getenv('ES_CA_CERTS', None))
+                         ca_certs=os.getenv('ES_CA_CERTS', None),
+                         timeout=60)
 
 geo_point_mapping = es.define_custom_geo_shape_mapping("geometry")
 
